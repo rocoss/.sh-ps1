@@ -1,8 +1,8 @@
-# Импортируем необходимые сборки
+# РРјРїРѕСЂС‚РёСЂСѓРµРј РЅРµРѕР±С…РѕРґРёРјС‹Рµ СЃР±РѕСЂРєРё
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# Функция для генерации случайного числа от min до max
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЃР»СѓС‡Р°Р№РЅРѕРіРѕ С‡РёСЃР»Р° РѕС‚ min РґРѕ max
 function Get-RandomNumber {
     param (
         [int]$min,
@@ -11,7 +11,7 @@ function Get-RandomNumber {
     return Get-Random -Minimum $min -Maximum ($max + 1)
 }
 
-# Функция для плавного перемещения курсора по прямой
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїР»Р°РІРЅРѕРіРѕ РїРµСЂРµРјРµС‰РµРЅРёСЏ РєСѓСЂСЃРѕСЂР° РїРѕ РїСЂСЏРјРѕР№
 function Move-CursorStraight {
     param (
         [int]$startX,
@@ -24,7 +24,7 @@ function Move-CursorStraight {
     $stepX = ($endX - $startX) / $steps
     $stepY = ($endY - $startY) / $steps
 
-    for ($i = 0; $i -lt $steps; $i++) {  # Изменено на -lt для корректного завершения
+    for ($i = 0; $i -lt $steps; $i++) {  # РР·РјРµРЅРµРЅРѕ РЅР° -lt РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ
         $currentX = [Math]::Round($startX + $stepX * $i)
         $currentY = [Math]::Round($startY + $stepY * $i)
         [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($currentX, $currentY)
@@ -32,7 +32,7 @@ function Move-CursorStraight {
     }
 }
 
-# Функция для плавного волнообразного перемещения курсора
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїР»Р°РІРЅРѕРіРѕ РІРѕР»РЅРѕРѕР±СЂР°Р·РЅРѕРіРѕ РїРµСЂРµРјРµС‰РµРЅРёСЏ РєСѓСЂСЃРѕСЂР°
 function Move-CursorWavy {
     param (
         [int]$startX,
@@ -46,7 +46,7 @@ function Move-CursorWavy {
     $stepX = ($endX - $startX) / $steps
     $stepY = ($endY - $startY) / $steps
 
-    for ($i = 0; $i -lt $steps; $i++) {  # Изменено на -lt для корректного завершения
+    for ($i = 0; $i -lt $steps; $i++) {  # РР·РјРµРЅРµРЅРѕ РЅР° -lt РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ
         $currentX = [Math]::Round($startX + $stepX * $i)
         $currentY = [Math]::Round($startY + $stepY * $i + [Math]::Sin($i * [Math]::PI / 10) * $waveAmplitude)
         [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($currentX, $currentY)
@@ -54,7 +54,7 @@ function Move-CursorWavy {
     }
 }
 
-# Функция для перемещения курсора с резкими поворотами
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ РєСѓСЂСЃРѕСЂР° СЃ СЂРµР·РєРёРјРё РїРѕРІРѕСЂРѕС‚Р°РјРё
 function Move-CursorWithTurns {
     param (
         [int]$startX,
@@ -67,26 +67,26 @@ function Move-CursorWithTurns {
     $stepX = ($endX - $startX) / $steps
     $stepY = ($endY - $startY) / $steps
 
-    for ($i = 0; $i -lt $steps; $i++) {  # Изменено на -lt для корректного завершения
+    for ($i = 0; $i -lt $steps; $i++) {  # РР·РјРµРЅРµРЅРѕ РЅР° -lt РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ
         $currentX = [Math]::Round($startX + $stepX * $i)
-        $currentY = [Math]::Round($startY + $stepY * $i + (Get-RandomNumber -min -10 -max 10)) # Случайные отклонения
+        $currentY = [Math]::Round($startY + $stepY * $i + (Get-RandomNumber -min -10 -max 10)) # РЎР»СѓС‡Р°Р№РЅС‹Рµ РѕС‚РєР»РѕРЅРµРЅРёСЏ
         [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($currentX, $currentY)
         Start-Sleep -Milliseconds (Get-RandomNumber -min 5 -max 20)
     }
 }
 
-# Основная часть скрипта
+# РћСЃРЅРѕРІРЅР°СЏ С‡Р°СЃС‚СЊ СЃРєСЂРёРїС‚Р°
 while ($true) {
-    # Генерируем случайные координаты для начала и конца
+    # Р“РµРЅРµСЂРёСЂСѓРµРј СЃР»СѓС‡Р°Р№РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РґР»СЏ РЅР°С‡Р°Р»Р° Рё РєРѕРЅС†Р°
     $startX = [System.Windows.Forms.Cursor]::Position.X
     $startY = [System.Windows.Forms.Cursor]::Position.Y
     $endX = Get-RandomNumber -min 0 -max 1920
     $endY = Get-RandomNumber -min 0 -max 1080
 
-    # Генерируем случайное количество шагов для перемещения
+    # Р“РµРЅРµСЂРёСЂСѓРµРј СЃР»СѓС‡Р°Р№РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ С€Р°РіРѕРІ РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ
     $steps = Get-RandomNumber -min 30 -max 100
 
-    # Выбираем случайный тип движения
+    # Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ С‚РёРї РґРІРёР¶РµРЅРёСЏ
     $movementType = Get-RandomNumber -min 1 -max 3
 
     switch ($movementType) {
@@ -95,6 +95,6 @@ while ($true) {
         3 { Move-CursorWithTurns -startX $startX -startY $startY -endX $endX -endY $endY -steps $steps }
     }
 
-    # Ждем более длительное случайное время перед следующим движением
+    # Р–РґРµРј Р±РѕР»РµРµ РґР»РёС‚РµР»СЊРЅРѕРµ СЃР»СѓС‡Р°Р№РЅРѕРµ РІСЂРµРјСЏ РїРµСЂРµРґ СЃР»РµРґСѓСЋС‰РёРј РґРІРёР¶РµРЅРёРµРј
     Start-Sleep -Milliseconds (Get-RandomNumber -min 2000 -max 5000)
 }
